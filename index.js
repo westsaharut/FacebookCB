@@ -45,8 +45,8 @@ login({email: userInfo.email, password: userInfo.password}, function(err, api){
       }
 
       function autoSend(str, id){
-        var yourID = "100017526824783";
-        var msg = {body: "ขอโทษๆๆ ตอบหน่อย ดีกัน นะ"};
+        var yourID = "FbId"; // FacebookID you want to send message.
+        var msg = {body: "Message"}; //Your Message
         api.sendMessage(msg, yourID);
         setTimeout(autoSend, 2000);
       }
@@ -63,7 +63,7 @@ login({email: userInfo.email, password: userInfo.password}, function(err, api){
 
           var req = message.body ? message.body.toLowerCase() : '';
           var id = message.threadID;
-          if(message.threadID!='100017526824783'){  //id toey
+          if(message.threadID!='FbId'){ //FacebookID you want to callback send message.
             if(req && !inTimeout[id]){
                 handleMessage(req, id, sendMessage);
                 if(timeout){
@@ -73,11 +73,12 @@ login({email: userInfo.email, password: userInfo.password}, function(err, api){
                     }, timeout);
                 }
             }
-          }else{
-            var yourID = "100004305930266"; // id west
-            var msg = {body: "ตอบแล้ว!!"};
-            api.sendMessage(msg, yourID);
           }
+          // else{
+          //   var yourID = "FbId";
+          //   var msg = {body: ""};
+          //   api.sendMessage(msg, yourID);
+          // }
       });
 
     }
